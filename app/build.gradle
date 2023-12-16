@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id("com.google.dagger.hilt.android")
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -53,6 +54,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-firestore:24.10.0'
     def koin_android_version = '3.4.0'
     def retrofit_version = '2.9.0'
 
@@ -98,6 +100,14 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.44")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
+    // Icons
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
+
+    // Courotines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
 }
 kapt {
     correctErrorTypes true

@@ -4,6 +4,8 @@ import com.devandroid.myapplication.data.repository.CryptoRepositoryImpl
 import com.devandroid.myapplication.data.services.CryptoService
 import com.devandroid.myapplication.domain.repository.CryptoRepository
 import com.devandroid.myapplication.util.Constants
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

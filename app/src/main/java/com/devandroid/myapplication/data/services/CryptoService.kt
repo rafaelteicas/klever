@@ -8,6 +8,6 @@ import retrofit2.http.Query
 
 
 interface CryptoService {
-    @GET("coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false")
+    @GET("coins/markets?vs_currency=brl&order=market_cap_desc&per_page=10&page=1&sparkline=false")
     suspend fun getList(): List<CryptoDto>
 }

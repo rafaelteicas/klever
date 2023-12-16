@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1064314866526",
+    "project_id": "my-application-843f8",
+    "storage_bucket": "my-application-843f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064314866526:android:ab7b97e0c7a58e44caddcf",
+        "android_client_info": {
+          "package_name": "com.devandroid.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCHMsEri8lCbVGKF1yBZ83yjvowdEEVHo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

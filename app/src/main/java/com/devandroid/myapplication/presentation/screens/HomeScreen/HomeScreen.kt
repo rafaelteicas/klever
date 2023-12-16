@@ -1,13 +1,16 @@
 package com.devandroid.myapplication.presentation.screens.HomeScreen
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import dagger.hilt.android.AndroidEntryPoint
+import androidx.navigation.compose.rememberNavController
+import com.devandroid.myapplication.presentation.navigation.NavGraph.NavGraph
+import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletList.WalletViewModel
 
 @Composable
 fun HomeScreen(
-    navController: NavController
-) {
-    Text(text = "Home")
+    navController: NavController,
+    walletViewModel: WalletViewModel = viewModel()
+    ) {
+    NavGraph(navController = rememberNavController(), walletViewModel = walletViewModel)
 }
