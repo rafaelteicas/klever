@@ -1,13 +1,16 @@
 package com.devandroid.myapplication.presentation.navigation.Bottom
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.DrawerValue
+import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -17,26 +20,25 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.devandroid.myapplication.presentation.components.Logo
+import com.devandroid.myapplication.presentation.navigation.NavGraph.NavScreens
+import com.devandroid.myapplication.presentation.screens.CryptoDetailScreen.CryptoDetailScreen
 import com.devandroid.myapplication.presentation.screens.HomeScreen.HomeScreen
-import com.devandroid.myapplication.presentation.screens.ListScreen.ListScreen
+import com.devandroid.myapplication.presentation.screens.CryptoListScreen.CryptoListScreen
+import com.devandroid.myapplication.presentation.screens.SplashScreen.SplashScreen
 import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletList.AddWalletScreen
-import dagger.hilt.android.AndroidEntryPoint
-import java.text.NumberFormat
-import java.util.Locale
+import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomTabNav() {
     val items = listOf<BottomScreens>(
-        BottomScreens.HomeScreen,
         BottomScreens.ListScreen,
-        BottomScreens.AddWalletScreen
+        BottomScreens.WalletScreen,
     )
     val navController = rememberNavController()
+    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     Scaffold (
-        topBar = { Logo() },
         bottomBar = { BottomNavigation {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination
@@ -51,10 +53,16 @@ fun BottomTabNav() {
         } }
     ) {
         it ->
-        NavHost(navController = navController, startDestination = BottomScreens.HomeScreen.route, Modifier.padding(it) ) {
-            composable(BottomScreens.HomeScreen.route) { HomeScreen(navController = navController) }
-            composable(BottomScreens.AddWalletScreen.route) { AddWalletScreen(navController = navController) }
-            composable(BottomScreens.ListScreen.route) { ListScreen(navController = navController) }
+        NavHost(navController = navController, startDestination = BottomScreens.ListScreen.route , Modifier.padding(it) ) {
+            composable(BottomScreens.WalletScreen.route) { WalletScreen(navController) }
+            composable(BottomScreens.ListScreen.route) { CryptoListScreen(navController) }
+            composable(BottomScreens.AddWalletScreen.route + "/{token}/{price}") {
+                val token = it.arguments?.getString("token")
+                val price = it.arguments?.getString("price")
+                AddWalletScreen(navController, token = token, price = price)
+            }
+            composable(NavScreens.CryptoDetail.route + "/{id}") { CryptoDetailScreen(navController) }
+            composable(NavScreens.SplashScreen.route) { SplashScreen(navController, scaffoldState) }
         }
     }
 }

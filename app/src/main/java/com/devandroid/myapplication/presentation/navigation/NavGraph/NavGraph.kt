@@ -6,6 +6,8 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.devandroid.myapplication.presentation.screens.CryptoDetailScreen.CryptoDetailScreen
+import com.devandroid.myapplication.presentation.screens.SplashScreen.SplashScreen
 import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletList.AddWalletScreen
 import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletList.ListWalletScreen
 import com.devandroid.myapplication.presentation.screens.WalletScreen.WalletList.UpdateWalletScreen

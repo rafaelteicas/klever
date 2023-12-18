@@ -8,6 +8,8 @@ fun CryptoDto.toCrypto(): CryptoModel {
         id = id,
         name = name,
         icon = image,
-        price = current_price
+        price = current_price,
+        symbol = symbol,
+        priceVariation = price_change_24h
     )
 }

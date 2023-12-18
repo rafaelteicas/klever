@@ -9,9 +9,7 @@ import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class BottomScreens(val route: String, val label: String = "", val icon: ImageVector = Icons.Default.Home) {
-    object HomeScreen : BottomScreens("HomeScreen", label = "Home", icon  = Icons.Default.Wallet)
-    object AddWalletScreen : BottomScreens("AddWalletScreen", label = "Add", icon  = Icons.Default.Add)
-
     object ListScreen : BottomScreens("ListScreen", label = "List", icon  = Icons.Default.CurrencyBitcoin)
-
+    object WalletScreen : BottomScreens("WalletScreen", label = "Home", icon  = Icons.Default.Wallet)
+    object AddWalletScreen : BottomScreens("AddWalletScreen", label = "Add", icon  = Icons.Default.Add)
 }

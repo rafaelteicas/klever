@@ -54,7 +54,8 @@ fun UpdateWalletScreen(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp),
                 value = balance,
                 onValueChange = { balance = it },
-                label = { Text(text = "Token")},
+                label = { Text(text = "Altere o valor:")},
+                keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 maxLines = 1
             )
             Button(

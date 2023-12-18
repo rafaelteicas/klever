@@ -1,4 +1,4 @@
-package com.devandroid.myapplication.presentation.components
+package com.devandroid.myapplication.presentation.components.Logo
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -23,13 +23,12 @@ import com.devandroid.myapplication.R
 fun Logo() {
 
     Column (
-        modifier = Modifier.fillMaxWidth().offset(0.dp,40.dp),
+        modifier = Modifier.fillMaxWidth().height(60.dp).offset(0.dp,20.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(painter = painterResource(id = R.drawable.logo),
-            contentDescription = "KleverLogo",
-            modifier = Modifier.width(200.dp).height(80.dp)
+        Image(painter = painterResource(id = R.drawable.logo), modifier = Modifier.size(160.dp),
+            contentDescription = "KleverLogo"
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.devandroid.myapplication.presentation.useCase
+package com.devandroid.myapplication.domain.useCase
 
 import com.devandroid.myapplication.domain.adapter.toCrypto
 import com.devandroid.myapplication.domain.model.CryptoModel
@@ -14,8 +14,8 @@ class CryptoUseCase @Inject constructor(
     private val repository: CryptoRepository
 ){
     operator fun invoke(): Flow<Response<List<CryptoModel>>> = flow {
+        emit(Response.Loading())
         try {
-            emit(Response.Loading())
             val data = repository.getList().map { it.toCrypto() }
             emit(Response.Success(data))
         } catch (e: HttpException) {

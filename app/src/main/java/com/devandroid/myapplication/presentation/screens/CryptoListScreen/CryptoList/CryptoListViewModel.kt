@@ -1,9 +1,12 @@
-package com.devandroid.myapplication.presentation.screens.ListScreen.CryptoList
+package com.devandroid.myapplication.presentation.screens.CryptoListScreen.CryptoList
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devandroid.myapplication.presentation.useCase.CryptoUseCase
+import com.devandroid.myapplication.domain.model.CryptoModel
+import com.devandroid.myapplication.domain.useCase.CryptoUseCase
 import com.devandroid.myapplication.util.Response
+import com.devandroid.myapplication.util.State
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,21 +19,15 @@ import javax.inject.Inject
 class CryptoListViewModel @Inject constructor(
     private val cryptoUseCase: CryptoUseCase
 ): ViewModel() {
-    private val _state = MutableStateFlow(CryptoState())
-    var state: StateFlow<CryptoState> = _state
+    private val _state = MutableStateFlow(State<CryptoModel>())
+    var state: StateFlow<State<CryptoModel>> = _state
     fun getCryptoList() {
         viewModelScope.launch(Dispatchers.IO) {
             cryptoUseCase().collect{
                 when(it) {
-                    is Response.Success -> {
-                        _state.value = CryptoState(data = it.data ?: emptyList())
-                    }
-                    is Response.Loading -> {
-                        _state.value = CryptoState(isLoading = true)
-                    }
-                    is Response.Error -> {
-                        _state.value = CryptoState(error = it.message ?: "Error")
-                    }
+                    is Response.Success -> _state.value = State(data = it.data ?: emptyList())
+                    is Response.Loading ->_state.value = State(isLoading = true)
+                    is Response.Error -> _state.value = State(error = it.message ?: "Error")
                 }
             }
         }

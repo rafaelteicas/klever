@@ -16,29 +16,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF712175),
-    secondary = PurpleGrey80,
+private val ColorScheme = darkColorScheme(
+    primary = Color(0xFF430E46),
+    secondary = Color(0xFF430E46),
     tertiary = Pink80,
-    background = Color(0xFF0a0a13),
+    background = Color(0xFF020207),
     onBackground = Color.White
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF712175),
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    background = Color(0xFF0a0a13),
-    onBackground = Color.White
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-
-    onSurface = Color(0xFF1C1B1F),
-    */
 )
 
 @Composable
@@ -51,11 +34,11 @@ fun MyApplicationTheme(
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicDarkColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> ColorScheme
+        else -> ColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
